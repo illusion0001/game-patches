@@ -53,7 +53,7 @@ jobs:
             patch_check 'title_id = "[0-9A-F]{8}" # [A-Z]{2}-[0-9]{4,5}'                                                                          "$patch_content" error   nomatch "title_id is invalid or missing!"
             patch_check 'hash = ("[0-9A-F]{16}" # .+|\[.*\n {4}"[0-9A-F]{16}".*(\n#? {4}"[0-9A-F]{16}".*)*\n])|#hash = (""|\[(\n# {4}"".*)+\n#])' "$patch_content" error   nomatch "hash is invalid or missing!"
             # This should be an error, but not all patches have this yet.
-            patch_check '#hash = (""|\[\n# {4}"").*'                                                                                              "$patch_content" warning match   "hash is empty."
+            patch_check '#hash = (""|\[\n# {4}"").*'                                                                                              "$patch_content" warning match   "hash is empty. $patch_content"
             patch_check '#media_id = ("[0-9A-F]{8}".*|\[( # .+)?\n# {4}"[0-9A-F]{8}".*(\n# {4}"[0-9A-F]{8}".*)*\n#])|#media_id = ""'              "$patch_content" error   nomatch "media_id is invalid or missing!"
             # This should be an error, but not all patches have this yet.
             patch_check '#media_id = ""'                                                                                                          "$patch_content" warning match   "media_id is empty."
